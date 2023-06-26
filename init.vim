@@ -8,20 +8,27 @@ set smarttab
 set smartindent
 set ignorecase
 set smartcase
-" Plug 'lervag/vimtex'
-
+" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 call plug#begin()
 Plug 'Raimondi/delimitMate'
+Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'nvim-lualine/lualine.nvim'
 call plug#end() 
+colorscheme apprentice 
+lua require('lualine').setup{options = {theme = 'horizon'}}
+
 let g:delimitMate_expand_cr = 1
 nnoremap Y Y
 syntax enable
 filetype plugin indent on
 
+
 " vimtex nonsense
-" let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_method = 'zathura'
+let g:coc_disable_startup_warning = 1
 
 
 " COC configuration:
@@ -126,7 +133,7 @@ nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <leader>cl  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server
+" NOTE: Requires 'textDocument.documentSymbl' support from the language server
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -182,10 +189,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-
-" copilot options
-let g:copilot_filetypes = {
-              \ 'cpp': v:false,
-              \ }
-
+o
