@@ -14,11 +14,16 @@ Plug 'Raimondi/delimitMate'
 Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
-Plug 'rafi/awesome-vim-colorschemes'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'nvim-lualine/lualine.nvim'
 call plug#end() 
-colorscheme apprentice 
-lua require('lualine').setup{options = {theme = 'horizon'}}
+lua require('lualine').setup{options = {theme = 'catppuccin'}}
+
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+
+lua require("catppuccin").setup()
+
+colorscheme catppuccin
 
 let g:delimitMate_expand_cr = 1
 nnoremap Y Y
