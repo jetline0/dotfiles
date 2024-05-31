@@ -13,15 +13,19 @@ call plug#begin()
 Plug 'Raimondi/delimitMate'
 Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'github/copilot.vim'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'puremourning/vimspector'
 call plug#end() 
 lua require('lualine').setup{options = {theme = 'catppuccin'}}
 
 let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
 
 lua require("catppuccin").setup()
+
+" vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = [ 'CodeLLDB' ]
 
 colorscheme catppuccin
 
@@ -30,11 +34,14 @@ nnoremap Y Y
 syntax enable
 filetype plugin indent on
 
-
 " vimtex nonsense
 let g:vimtex_view_method = 'zathura'
 let g:coc_disable_startup_warning = 1
 
+nnoremap <silent><nowait> <C-e>  :<C-u>Ex<CR>
+
+" for gdb sillies
+nnoremap <silent><nowait> <space>f  :<C-u>echo join([expand('%:t'),  line(".")], ':')<CR>
 
 " COC configuration:
 " Some servers have issues with backup files, see #649
@@ -195,9 +202,3 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 o
-
-" copilot options
-let g:copilot_filetypes = {
-              \ 'cpp': v:false,
-              \ }
-
